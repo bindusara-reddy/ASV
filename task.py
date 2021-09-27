@@ -15,9 +15,8 @@ data=pd.read_csv('copy.txt')
 roll = []
 pitch = []
 yaw = []
-j=1
-print( data.shape() )
-while j < len(data.count()):
+j=0
+while j < data.shape[0]:
     num1 = 2*(data['q0'][j]*data['q1'][j]+data['q2'][j]*data['q3'][j])
     den1 = 1-(2*(data['q1'][j]*data['q1'][j]+data['q2'][j]*data['q2'][j]))
 
@@ -32,4 +31,9 @@ while j < len(data.count()):
 
     j+=1
 
-print(roll)
+plt.plot(data['time'],roll)
+plt.show()
+plt.plot(data['time'],pitch)
+plt.show()
+plt.plot(data['time'],yaw)
+plt.show()
