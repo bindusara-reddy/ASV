@@ -15,10 +15,21 @@ data=pd.read_csv('copy.txt')
 roll = []
 pitch = []
 yaw = []
-j=0
-while j < len(string_list):
-    roll[j] = np.arctan( (2*(data[2][j]*data[3][j]+data[4][j]*data[5][j]))/(1-(2*(data[3][j]*data[3][j]+data[4][j]*data[4][j]))))
-    pitch[j] = np.arcsin( 2*(data[2][j]*data[4][j]-data[3][j]*data[5]))
-    yaw[j] = np.arctan( (2*data[2][j]*dat[5][j]+data[3][j]*data[4][j])/(1-(2*(data[4][j]*data[4][j]+data[5][j]*data[5][j]))))
+j=1
+print( data.shape() )
+while j < len(data.count()):
+    num1 = 2*(data['q0'][j]*data['q1'][j]+data['q2'][j]*data['q3'][j])
+    den1 = 1-(2*(data['q1'][j]*data['q1'][j]+data['q2'][j]*data['q2'][j]))
+
+    roll.append( np.arctan(num1 / den1) )
+
+    pitch.append( np.arcsin( 2*(data['q0'][j]*data['q2'][j]-data['q1'][j]*data['q3'][j])) )
+
+    num2 = 2*(data['q0'][j]*data['q3'][j]+data['q1'][j]*data['q2'][j])
+    den2 = 1-(2*(data['q3'][j]*data['q3'][j]+data['q2'][j]*data['q2'][j]))
+
+    yaw.append( np.arctan( num2 / den2) )
+
+    j+=1
 
 print(roll)
